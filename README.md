@@ -1,2 +1,1 @@
-# GitLearning
-Git学习记录
+一些总结

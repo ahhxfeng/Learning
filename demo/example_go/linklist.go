@@ -11,8 +11,13 @@ type LinkList struct {
 	head *Node
 }
 
-func (list *LinkList) insert(data string) {
-	newNode := &Node{data: data}
+func (list *LinkList) append(data string) {
+	// insert data at linklist end
+
+	newNode := &Node{
+		data: data,
+		next: nil,
+	}
 
 	if list.head == nil {
 		// LinkList is empty
@@ -23,6 +28,38 @@ func (list *LinkList) insert(data string) {
 			current = current.next
 		}
 		current.next = newNode
+	}
+}
+
+func (list *LinkList) prepend(data string) {
+	// insert data before first data
+
+	newNode := &Node{
+		data: data,
+		next: list.head,
+	}
+
+	list.head = newNode
+
+}
+
+func (list *LinkList) deleteWithValue(data string) {
+	if list.head == nil {
+		return
+	}
+
+	if list.head.data == data {
+		list.head = list.head.next
+		return
+	}
+
+	current := list.head
+	// current.next != nil error: invaild memory address
+	for current != nil {
+		if current.next.data == data {
+			current.next = current.next.next
+		}
+		current = current.next
 	}
 }
 
@@ -45,11 +82,17 @@ func (list *LinkList) display() {
 func main() {
 	list := LinkList{}
 
-	list.insert("1")
-	list.insert("20")
-	list.insert("33")
-	list.insert("99")
-	list.insert("77")
+	list.append("1")
+	list.append("20")
+	list.append("33")
+	list.append("99")
+	list.append("77")
+	list.append("end")
 
+	list.prepend("0")
+	list.prepend("-1")
 	list.display()
+	list.deleteWithValue("end")
+	list.display()
+
 }

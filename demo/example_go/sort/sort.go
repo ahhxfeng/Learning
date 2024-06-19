@@ -7,6 +7,8 @@ func (l IntSlice) bubbleSort() IntSlice {
 	for i := 0; i < len(l); i++ {
 		// j < len(l)-1 O(n^2)
 		// better j < len(1)-1-i O(nlogn)
+		// assert Slice is ordered ?
+		var order_flag = true
 		for j := 0; j < len(l)-1-i; j++ {
 			// l[i] > l[j] is not right ,because is not bubble thought
 			//
@@ -14,7 +16,12 @@ func (l IntSlice) bubbleSort() IntSlice {
 			// in the first for range
 			if l[j] > l[j+1] {
 				l.Swap(j, j+1)
+				order_flag = false
 			}
+		}
+
+		if order_flag {
+			return l
 		}
 	}
 	return l

@@ -28,8 +28,28 @@ func (l IntSlice) bubbleSort() IntSlice {
 }
 
 func (l IntSlice) Swap(i int, j int) {
-	// swap the index i and j value
+	// swap the value of index i and j
 	tmp := l[j]
 	l[j] = l[i]
 	l[i] = tmp
+}
+
+// 简单选择，从index 0 开始，每次选最小的，放在当前位置
+func (l IntSlice) selectSort() IntSlice {
+	for i := 0; i < len(l); i++ {
+		// declear the min value index
+		min := i
+		for j := i + 1; j < len(l); j++ {
+			if l[min] > l[j] {
+				min = j
+			}
+
+		}
+		if i != min {
+
+			l.Swap(i, min)
+		}
+
+	}
+	return l
 }

@@ -37,7 +37,7 @@ func (l IntSlice) Swap(i int, j int) {
 // 简单选择，从index 0 开始，每次选最小的，放在当前位置
 func (l IntSlice) selectSort() IntSlice {
 	for i := 0; i < len(l); i++ {
-		// declear the min value index
+		// declear the index of min value
 		min := i
 		for j := i + 1; j < len(l); j++ {
 			if l[min] > l[j] {
@@ -51,5 +51,40 @@ func (l IntSlice) selectSort() IntSlice {
 		}
 
 	}
+	return l
+}
+
+// TODO：
+// 直接插入排序,
+// func (l IntSlice) straightInsert() IntSlice {
+// 	for i := 1; i < len(l); i++ {
+// 		for j := i - 1; j >= 0; j-- {
+// 			temp := l[i]
+// 			if temp < l[j] {
+// 				// 选中的 比当前小，当前的后移一位
+// 				l[j+1] = l[j]
+// 				continue
+// 			}
+// 			l[j] = temp
+
+// 		}
+// 	}
+
+// 	return l
+// }
+
+// 直接插入排序，
+
+func (l IntSlice) straightInsert() IntSlice {
+	for i := 1; i < len(l); i++ {
+		temp := l[i]
+		j := i - 1
+		for j >= 0 && l[j] > temp {
+			l[j+1] = l[j]
+			j--
+		}
+		l[j+1] = temp
+	}
+
 	return l
 }

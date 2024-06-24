@@ -9,7 +9,7 @@ type UnsortSlice struct {
 var unsortslice UnsortSlice
 
 func (u *UnsortSlice) buildData() {
-	u.Slices = append(u.Slices, IntSlice{1, 3, 5, 8, 4, 6, 9, 7, 10})
+	u.Slices = append(u.Slices, IntSlice{1, 5, 3, 8, 4, 6, 9, 7, 10})
 	u.Slices = append(u.Slices, IntSlice{5, 4, 4, 6, 3, 7, 9, 11, 43, 21, 66, 100})
 	u.Slices = append(u.Slices, IntSlice{0, 1, 5, 8, 11, 9, 9, 9, 8, 9, 11, 77})
 	u.Slices = append(u.Slices, IntSlice{0, 6, 5, 8, 11, 9, 9, 9, 8, 9, 11, 77, 122, 1024, 333})
@@ -49,6 +49,21 @@ func TestSelectSort(t *testing.T) {
 		// newSlice := unsortslice.Slices[i].selectSort()
 		// t.Logf("sorted Slice %d ", newSlice)
 		unsortslice.Slices[i].selectSort()
+		t.Logf("sorted Slice %d ", unsortslice.Slices[i])
+		t.Log("\n")
+
+	}
+
+}
+
+func TestStraightInsert(t *testing.T) {
+	t.Log("Test straight insert sort start !!")
+	unsortslice.buildData()
+	for i := 0; i < len(unsortslice.Slices); i++ {
+		t.Logf("Origin Slice %d ", unsortslice.Slices[i])
+		// newSlice := unsortslice.Slices[i].selectSort()
+		// t.Logf("sorted Slice %d ", newSlice)
+		unsortslice.Slices[i].straightInsert()
 		t.Logf("sorted Slice %d ", unsortslice.Slices[i])
 		t.Log("\n")
 

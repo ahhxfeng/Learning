@@ -88,3 +88,13 @@ func (l IntSlice) straightInsert() IntSlice {
 
 	return l
 }
+
+// 快速排序
+// func (l IntSlice) quickSort() {
+// 	Qsort(l, 0, len(l))
+
+// }
+
+// func Qsort(nums []int) {
+
+// }

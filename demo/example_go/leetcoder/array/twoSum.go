@@ -27,7 +27,8 @@ func twoSumV(nums []int, target int) []int {
 
 // hash查找
 // T O(n)
-// T O(n)
+// S O(n)
+// 0ms 100%
 
 func twoSumH(nums []int, target int) []int {
 	res := make([]int, 0)
@@ -45,4 +46,23 @@ func twoSumH(nums []int, target int) []int {
 	}
 
 	return res
+}
+
+// hash 查找 from ChatGPT
+// T 0(n)
+// S O(n)
+// 3ms
+
+func twoSumHG(nums []int, target int) []int {
+	numMap := make(map[int]int)
+
+	for i, num := range nums {
+		complement := target - num
+		if j, found := numMap[complement]; found {
+			return []int{j, i}
+		}
+		numMap[num] = i
+	}
+
+	return nil
 }

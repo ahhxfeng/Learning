@@ -70,3 +70,14 @@ func TestStraightInsert(t *testing.T) {
 	}
 
 }
+
+func TestMergeSort(t *testing.T) {
+	t.Log("归并 排序 测试")
+	unsortslice.buildData()
+	for i := 0; i < len(unsortslice.Slices); i++ {
+		t.Logf("Origin Slice %v", unsortslice.Slices[i])
+		mergeSort(unsortslice.Slices[i], 0, len(unsortslice.Slices[i]))
+		t.Logf("Sorted Slice %v\n", unsortslice.Slices[i])
+	}
+
+}
